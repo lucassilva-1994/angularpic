@@ -1,2 +1,4 @@
-<app-photo url="https://miro.medium.com/v2/resize:fit:1400/1*bMgQ8MhbnQexpqHgIgBJPA.png" description="Angular" title="Angular"></app-photo>
-<app-photo  url="https://www.etondigital.com/wp-content/uploads/2019/05/laravel-blog.png" description="Laravel" title="Laravel"></app-photo>
+<app-photo *ngFor="let photo of photos"
+  [url]="photo.url"
+  [description]="photo.description">
+</app-photo>
