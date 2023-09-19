@@ -8,7 +8,6 @@
           (keyup)="filter = $event.target.value">
   </form>
 </div>
-{{ filter }}
 <ap-photos [photos]="photos | filterByDescription : filter"></ap-photos>
 
 
