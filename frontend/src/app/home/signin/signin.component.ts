@@ -1,5 +1,5 @@
 import { AuthService } from './../../core/auth.service';
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class SignInComponent implements OnInit{
       loginForm: FormGroup;
+      @ViewChild('userNameInput') userNameInput: ElementRef<HTMLInputElement>;
 
       constructor(
         private formBuilder: FormBuilder,
@@ -27,11 +28,11 @@ export class SignInComponent implements OnInit{
           this.authService
           .authenticate(userName,password)
           .subscribe(
-            //() => this.router.navigateByUrl('user/'+userName),
             () => this.router.navigate(['user',userName]),
             err => {
-              console.log('Falha na Autenticação')
-              this.loginForm.reset(),
+              console.log('Falha na Autenticação');
+              this.loginForm.reset();
+              this.userNameInput.nativeElement.focus();
               alert('Username or/and password invalid')
             }
           )
