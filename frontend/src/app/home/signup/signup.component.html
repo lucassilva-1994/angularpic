@@ -69,6 +69,14 @@
             text="Must be lower case"
           >
           </ap-vmessage>
+          <ap-vmessage
+            text="Username already exists"
+            *ngIf="signUpForm.get('userName').errors?.userNameTaken"
+          >
+          </ap-vmessage>
+          <small *ngIf="signUpForm.get('userName').valid" class="text-success"
+            >User available</small
+          >
         </div>
         <div class="form-group">
           <input
@@ -93,7 +101,11 @@
           </ap-vmessage>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-block">
+        <button
+          type="submit"
+          [disabled]="signUpForm.invalid"
+          class="btn btn-primary btn-block"
+        >
           Register
         </button>
 
