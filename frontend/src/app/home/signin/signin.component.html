@@ -1,9 +1,5 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-5">
       <h2>Login</h2>
       <form class="form mt-4" [formGroup]="loginForm" (submit)="login()">
-
           <div class="form-group">
               <input #userNameInput
                   class="form-control"
@@ -34,10 +30,5 @@
               class="btn btn-primary btn-block">
               Login
           </button>
-
       </form>
-
       <p>Not a user?<a  [routerLink]="['signup']"> Register now</a></p>
-    </div>
-  </div>
-</div>
