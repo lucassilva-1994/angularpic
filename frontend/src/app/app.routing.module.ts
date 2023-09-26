@@ -23,12 +23,19 @@ const routes: Routes = [
       photos: PhotoListResolver
     }
   },
-  { path: 'photo/add', component: PhotoFormComponent },
-  { path: '**', component: NotFoundComponent }
+  {
+    path: 'photo/add',
+    component: PhotoFormComponent,
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash:true})],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
