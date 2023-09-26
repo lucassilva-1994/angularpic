@@ -9,6 +9,7 @@ const CLOUD = 'http://localhost:3000/imgs/'
 })
 export class PhotoComponent{
   private _url = '';
+  @Input() title = '';
   @Input() description = "";
   @Input() set url(url: string){
     if(!url.startsWith('data')){
