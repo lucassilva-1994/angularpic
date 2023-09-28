@@ -7,7 +7,10 @@
       <div class="col-lg-4 p-4">
           <h4 class="text-left break-word">{{photo.description}}</h4>
           <hr>
-        <ap-photo-comments [photoId]="photoId"></ap-photo-comments>
+        <ap-photo-comments [photoId]="photoId" *ngIf="photo.allowComments; else warnning"></ap-photo-comments>
+        <ng-template #warnning>
+            <p>User has disabled commets for this photo.</p>
+        </ng-template>
       </div>
     </div>
   </div>
