@@ -1,16 +1,20 @@
 <div class="bg-white border" *ngIf="(photo$ | async) as photo">
-    <div class="row">
-      <div class="col-lg-8">
-        <app-photo [url]="photo.url" [description]="photo.description"></app-photo>
+  <div class="row">
+    <div class="col-lg-8">
+      <app-photo [url]="photo.url" [description]="photo.description"></app-photo>
+    </div>
+
+    <div class="col-lg-4 p-4">
+      <h4 class="text-left break-word">{{photo.description}}</h4>
+      <div class="text-left mb-4">
+        <i class="fa fa-comment-o fa-2x mr-2 ml-2"></i>{{ photo.comments }}
+        <i (click)="remove()" class="fa fa-trash-o fa-2x pull-right"></i>
       </div>
-  
-      <div class="col-lg-4 p-4">
-          <h4 class="text-left break-word">{{photo.description}}</h4>
-          <hr>
-        <ap-photo-comments [photoId]="photoId" *ngIf="photo.allowComments; else warnning"></ap-photo-comments>
-        <ng-template #warnning>
-            <p>User has disabled commets for this photo.</p>
-        </ng-template>
-      </div>
+      <hr>
+      <ap-photo-comments [photoId]="photoId" *ngIf="photo.allowComments; else warnning"></ap-photo-comments>
+      <ng-template #warnning>
+        <p>User has disabled commets for this photo.</p>
+      </ng-template>
     </div>
   </div>
+</div>
