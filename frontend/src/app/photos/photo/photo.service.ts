@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Photo } from './photo';
 import { PhotoComment } from './photo-comment';
+import { catchError, map } from 'rxjs/operators';
+import { of, throwError } from 'rxjs';
 
 const API = 'http://localhost:3000'
 
@@ -42,5 +44,15 @@ export class PhotoService {
 
   removePhoto(photoId: number){
     return this.http.delete(API + '/photos/' + photoId);
+  }
+
+  like(photoId: number){
+    return this.http.post(
+      API + '/photos/' + photoId + '/like', {}, {observe:'response'}
+    )
+    .pipe(map(res =>true))
+    .pipe(catchError(error => {
+      return error.status == '304' ? of(false) : throwError(error)
+    }));
   }
 }
