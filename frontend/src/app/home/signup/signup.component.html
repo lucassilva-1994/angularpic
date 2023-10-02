@@ -1,110 +1,48 @@
-      <h2>Sign Up</h2>
-      <form class="form mt-4" [formGroup]="signUpForm" (submit)="signUp()">
-        <div class="form-group">
-          <input #emailInput
-            class="form-control"
-            formControlName="email"
-            placeholder="Email"
-          />
-          <ap-vmessage
-            *ngIf="signUpForm.get('email').errors?.required"
-            text="Email is required"
-          >
-          </ap-vmessage>
-          <ap-vmessage
-            *ngIf="signUpForm.get('email').errors?.email"
-            text="Invalid email"
-          >
-          </ap-vmessage>
-        </div>
+<h2>Sign Up</h2>
+<form #form="ngForm" class="form mt-4" [formGroup]="signUpForm" (submit)="signUp()">
+  <div class="form-group">
+    <input #emailInput class="form-control" formControlName="email" placeholder="Email" />
+    <ap-vmessage *ngIf="signUpForm.get('email').errors?.required && form.submitted" text="Email is required">
+    </ap-vmessage>
+    <ap-vmessage *ngIf="signUpForm.get('email').errors?.email && form.submitted" text="Invalid email">
+    </ap-vmessage>
+  </div>
 
-        <div class="form-group">
-          <input
-            class="form-control"
-            formControlName="fullName"
-            placeholder="Full name"
-          />
-          <ap-vmessage
-            *ngIf="signUpForm.get('fullName').errors?.required"
-            text="Fullname is required"
-          >
-          </ap-vmessage>
-          <ap-vmessage
-            *ngIf="signUpForm.get('fullName').errors?.minlength"
-            text="Minimum lenght is 02"
-          >
-          </ap-vmessage>
-          <ap-vmessage
-            *ngIf="signUpForm.get('fullName').errors?.maxlength"
-            text="Maximum lenght is 40"
-          >
-          </ap-vmessage>
-        </div>
-        <div class="form-group">
-          <input
-            class="form-control"
-            formControlName="userName"
-            placeholder="Username"
-          />
-          <ap-vmessage
-            *ngIf="signUpForm.get('userName').errors?.required"
-            text="Username is required"
-          >
-          </ap-vmessage>
-          <ap-vmessage
-            *ngIf="signUpForm.get('userName').errors?.minlength"
-            text="Minimum lenght is 02"
-          >
-          </ap-vmessage>
-          <ap-vmessage
-            *ngIf="signUpForm.get('userName').errors?.maxlength"
-            text="Maximum lenght is 30"
-          >
-          </ap-vmessage>
-          <ap-vmessage
-            *ngIf="signUpForm.get('userName').errors?.lowerCase"
-            text="Must be lower case"
-          >
-          </ap-vmessage>
-          <ap-vmessage
-            text="Username already exists"
-            *ngIf="signUpForm.get('userName').errors?.userNameTaken"
-          >
-          </ap-vmessage>
-          <small *ngIf="signUpForm.get('userName').valid" class="text-success"
-            >User available</small
-          >
-        </div>
-        <div class="form-group">
-          <input
-            type="password"
-            class="form-control"
-            formControlName="password"
-            placeholder="Password"
-          />
-          <ap-vmessage
-            *ngIf="signUpForm.get('password').errors?.required"
-            text="Password is required"
-          >
-          </ap-vmessage>
-          <ap-vmessage
-            *ngIf="signUpForm.get('password').errors?.minlength"
-            text="Minimum lenght is 08"
-          >
-          </ap-vmessage>
-          <ap-vmessage
-            *ngIf="signUpForm.get('password').errors?.maxlength"
-            text="Maximum lenght is 14"
-          >
-          </ap-vmessage>
-        </div>
+  <div class="form-group">
+    <input class="form-control" formControlName="fullName" placeholder="Full name" />
+    <ap-vmessage *ngIf="signUpForm.get('fullName').errors?.required && form.submitted" text="Fullname is required">
+    </ap-vmessage>
+    <ap-vmessage *ngIf="signUpForm.get('fullName').errors?.minlength && form.submitted" text="Minimum lenght is 02">
+    </ap-vmessage>
+    <ap-vmessage *ngIf="signUpForm.get('fullName').errors?.maxlength && form.submitted" text="Maximum lenght is 40">
+    </ap-vmessage>
+  </div>
+  <div class="form-group">
+    <input class="form-control" formControlName="userName" placeholder="Username" />
+    <ap-vmessage *ngIf="signUpForm.get('userName').errors?.required && form.submitted" text="Username is required">
+    </ap-vmessage>
+    <ap-vmessage *ngIf="signUpForm.get('userName').errors?.minlength && form.submitted" text="Minimum lenght is 02">
+    </ap-vmessage>
+    <ap-vmessage *ngIf="signUpForm.get('userName').errors?.maxlength && form.submitted" text="Maximum lenght is 30">
+    </ap-vmessage>
+    <ap-vmessage *ngIf="signUpForm.get('userName').errors?.lowerCase && form.submitted" text="Must be lower case">
+    </ap-vmessage>
+    <ap-vmessage text="Username already exists" *ngIf="signUpForm.get('userName').errors?.userNameTaken">
+    </ap-vmessage>
+    <small *ngIf="signUpForm.get('userName').valid && form.submitted" class="text-success">User available</small>
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control" formControlName="password" placeholder="Password" />
+    <ap-vmessage *ngIf="signUpForm.get('password').errors?.required && form.submitted" text="Password is required">
+    </ap-vmessage>
+    <ap-vmessage *ngIf="signUpForm.get('password').errors?.minlength && form.submitted" text="Minimum lenght is 08">
+    </ap-vmessage>
+    <ap-vmessage *ngIf="signUpForm.get('password').errors?.maxlength && form.submitted" text="Maximum lenght is 14">
+    </ap-vmessage>
+  </div>
 
-        <button
-          type="submit"
-          [disabled]="signUpForm.invalid || signUpForm.pending"
-          class="btn btn-primary btn-block"
-        >
-          Register
-        </button>
-        <p>Already a user? <a [routerLink]="['']">SignIn</a></p>
-      </form>
+  <button type="submit" class="btn btn-primary btn-block">
+    Register
+  </button>
+  <p>Already a user? <a [routerLink]="['']">SignIn</a></p>
+</form>
